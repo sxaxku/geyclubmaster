@@ -1,3 +1,10 @@
-------- log of 2026-01-16 01:26:29 -------
+------- log of 2026-01-16 05:56:00 -------
 
-2026-01-16 01:26:29 DEBUG	Prepare lasm file
+2026-01-16 05:56:00 DEBUG	Prepare lasm file
+2026-01-16 05:56:00 DEBUG	Start parsing main
+2026-01-16 05:56:00 DEBUG	Start parsing main/F0
+2026-01-16 05:56:00 DEBUG	Start parsing main/F0/F1
+2026-01-16 05:56:00 DEBUG	Start parsing main/F0/F1/F5
+2026-01-16 05:56:00 DEBUG	Start parsing main/F0/F2
+2026-01-16 05:56:00 DEBUG	Start parsing main/F0/F3
+2026-01-16 05:56:00 DEBUG	Start parsing main/F0/F4

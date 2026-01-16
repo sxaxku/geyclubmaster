@@ -31,18 +31,24 @@ end
 
 local function init()
     io.open(PARSER_ENV.log_path, "w"):write("------- log of " .. os.date("%Y-%m-%d %H:%M:%S") .. " -------\n\n")
+    io.open(PARSER_ENV.dump_path, "w"):write("");
     local log_handle = io.open(PARSER_ENV.log_path, "a");
+    local dump_handle = io.open(PARSER_ENV.dump_path, "a");
 
     PARSER_ENV.func_stack = {}
     PARSER_ENV.log_handle = log_handle;
     PARSER_ENV.logger = logger;
+
+    PARSER_ENV.dump_handle = dump_handle;
     
 
     local f = io.open(PARSER_ENV.lasm_path, "r");
     string = require("tools/strings")
+    table = require("tools/tables")
 
     local lines = {};
     local funcparser = require("parser/func_parser");
+    local deobfuscator = require("reverse/func_deobfuscator");
 
     if not f then
         print(tostring(f))
@@ -57,13 +63,15 @@ local function init()
         if (l == nil) then break end
     end
 
+    f:close()
+
     local parsed_lasm = funcparser(lines, 0);
 
-    --PARSER_ENV.log_path = "logs/log_" .. os.date("%Y_%m_%d_%H_%M_%S") .. ".log"
-
-    --os.rename("logs/latest.log", PARSER_ENV.log_path)
+    deobfuscator(parsed_lasm.funcs[1].funcs[4])
+    --print(parsed_lasm.funcs[1].funcs[4].funcs[11].name)
 
     PARSER_ENV.log_handle:close()
+    PARSER_ENV.dump_handle:close()
 end
 
 init();

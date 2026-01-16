@@ -1,0 +1,14 @@
+
+TEST v19 0
+
+JMP :goto_107  ; +3 ↓
+
+GETTABUP v21 u0 "print"
+
+LOADK v22 "Error caught successfully"
+
+CALL v21..v22
+
+if status then
+    print("Error caught successfully")
+end

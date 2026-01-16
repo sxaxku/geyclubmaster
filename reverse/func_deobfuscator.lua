@@ -134,8 +134,9 @@ local function deobfuscator(func)
         if (line:startwith("LOADK")) then
             local v = line:match("LOADK v(%d+)");
             if (line:match("LOADK v" .. tonumber(v) .. " \"xlet__\"") or line:match("LOADK v" .. tonumber(v) .. " \"__xlet\"")) then
-                vars[tonumber(v)] = 0
+                vars[tonumber(v)] = "xlet"
             end
+            vars[tonumber(v)] = 0
         end
 
         if (line:startwith("EQ") or line:startwith("LT") or line:startwith("LE")) then

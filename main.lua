@@ -15,7 +15,7 @@ PARSER_ENV = {};
 
 
 local function main()
-    PARSER_ENV.lasm_path = "scripts/dumps/dickpic.lasm"
+    PARSER_ENV.lasm_path = "scripts/dumps/lasm.lasm"
     PARSER_ENV.log_path = "logs/latest.log"
     PARSER_ENV.dump_path = "scripts/dumps/dump.lasm"
 

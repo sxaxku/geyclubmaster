@@ -66,8 +66,9 @@ local function init()
     f:close()
 
     local parsed_lasm = funcparser(lines, 0);
+    parsed_lasm.name = "main"
 
-    deobfuscator(parsed_lasm.funcs[1].funcs[4])
+    deobfuscator(parsed_lasm.funcs[1])
     --print(parsed_lasm.funcs[1].funcs[4].funcs[11].name)
 
     PARSER_ENV.log_handle:close()

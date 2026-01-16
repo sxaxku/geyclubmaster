@@ -1,14 +1,159 @@
+.func F16 ; 1 upvalues, 0 locals, 7 constants, 0 funcs
+.source "/storage/emulated/0/lua/deobf/Script_enc.lua"
+.linedefined 355
+.lastlinedefined 357
+.numparams 0
+.is_vararg 0
+.maxstacksize 5
 
-TEST v19 0
+.upval u0 "\x8B" ; u0
 
-JMP :goto_107  ; +3 ↓
+LT 0 112 147
 
-GETTABUP v21 u0 "print"
+LT 0 112 147
 
-LOADK v22 "Error caught successfully"
+LT 0 112 147
 
-CALL v21..v22
+JMP :goto_52  ; +48 ↓
 
-if status then
-    print("Error caught successfully")
-end
+JMP :goto_52  ; +47 ↓
+
+:goto_5
+TEST v4 0
+
+JMP :goto_39  ; +32 ↓
+
+JMP :goto_38  ; +30 ↓
+
+:goto_8
+CALL v1..v3 SET_TOP
+
+JMP :goto_47  ; +37 ↓
+
+:goto_10
+LOADK v4 "__xlet"
+
+JMP :goto_49  ; +37 ↓
+
+:goto_12
+GETTABUP v6 u1 v5  ; variable v6 out of stack (.maxstacksize = 5 for this func); upvalue u1 out of upvalues list (1 upvalues for this func); variable v5 out of stack (.maxstacksize = 5 for this func) ; garbage
+
+JMP :goto_33  ; +19 ↓ ; garbage
+
+:goto_14
+LOADK v5 "__xlet"  ; variable v5 out of stack (.maxstacksize = 5 for this func)
+
+JMP :goto_28  ; +12 ↓ ; garbage
+
+:goto_16
+TEST v4 0
+
+JMP :goto_41  ; +23 ↓
+
+JMP :goto_40  ; +21 ↓
+
+:goto_19
+LOADK v2 ">\x80\xBF\xF1\xCE$\x82\xB3\xE1\x15"
+
+JMP :goto_42  ; +21 ↓
+
+:goto_21
+SETTABUP u1 v5 v6  ; upvalue u1 out of upvalues list (1 upvalues for this func); variable v5 out of stack (.maxstacksize = 5 for this func); variable v6 out of stack (.maxstacksize = 5 for this func) ; garbage
+
+JMP :goto_24  ; +1 ↓ ; garbage
+
+:goto_23
+RETURN 
+
+:goto_24
+LOADK v5 "__xlet"  ; variable v5 out of stack (.maxstacksize = 5 for this func) ; garbage
+
+JMP :goto_56  ; +30 ↓ ; garbage
+
+:goto_26
+LOADK v5 "__xlet"  ; variable v5 out of stack (.maxstacksize = 5 for this func) ; garbage
+
+JMP :goto_12  ; -16 ↑ ; garbage
+
+:goto_28
+LOADK v6 "xlet__"  ; variable v6 out of stack (.maxstacksize = 5 for this func) ; garbage
+
+JMP :goto_58  ; +28 ↓ ; garbage
+
+:goto_30
+RETURN v6..v6  ; variable v6 out of stack (.maxstacksize = 5 for this func); variable v6 out of stack (.maxstacksize = 5 for this func) ; garbage
+
+JMP :goto_41  ; +9 ↓ ; garbage
+
+:goto_32
+JMP :goto_16  ; -17 ↑
+
+:goto_33
+RETURN v6..v6  ; variable v6 out of stack (.maxstacksize = 5 for this func); variable v6 out of stack (.maxstacksize = 5 for this func) ; garbage
+
+JMP :goto_39  ; +4 ↓ ; garbage
+
+:goto_35
+JMP :goto_5  ; -31 ↑
+
+:goto_36
+LOADK v6 "xlet__"  ; variable v6 out of stack (.maxstacksize = 5 for this func) ; garbage
+
+JMP :goto_21  ; -17 ↑ ; garbage
+
+:goto_38
+GETTABUP v1 u0 v4
+
+:goto_39
+JMP :goto_19  ; -21 ↑
+
+:goto_40
+GETTABUP v0 u0 v4
+
+:goto_41
+JMP :goto_10  ; -32 ↑
+
+:goto_42
+LOADK v3 49
+
+JMP :goto_8  ; -36 ↑
+
+:goto_44
+TEST v4 1
+
+JMP :goto_32  ; -14 ↑
+
+JMP :goto_54  ; +7 ↓
+
+:goto_47
+CALL v0
+
+JMP :goto_23  ; -26 ↑
+
+:goto_49
+TEST v4 1
+
+JMP :goto_35  ; -16 ↑
+
+JMP :goto_14  ; -38 ↑
+
+:goto_52
+LOADK v4 "error"
+
+JMP :goto_44  ; -10 ↑
+
+:goto_54
+LOADK v5 "__xlet"  ; variable v5 out of stack (.maxstacksize = 5 for this func)
+
+JMP :goto_36  ; -20 ↑ ; garbage
+
+:goto_56
+GETTABUP v6 u1 v5  ; variable v6 out of stack (.maxstacksize = 5 for this func); upvalue u1 out of upvalues list (1 upvalues for this func); variable v5 out of stack (.maxstacksize = 5 for this func) ; garbage
+
+JMP :goto_30  ; -28 ↑ ; garbage
+
+:goto_58
+SETTABUP u1 v5 v6  ; upvalue u1 out of upvalues list (1 upvalues for this func); variable v5 out of stack (.maxstacksize = 5 for this func); variable v6 out of stack (.maxstacksize = 5 for this func) ; garbage
+
+JMP :goto_26  ; -34 ↑ ; unused
+.end ; F16

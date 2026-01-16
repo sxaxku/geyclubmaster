@@ -1,77 +1,3 @@
-
-local cc = {}
-
-cc.test = function (a, b, vars)
-    a = tonumber(a);
-    b = tonumber(b);
- 
-    if (a ~= nil and b ~= nil) then
-        if b == 0 and vars[a] then
-            return true
-        end
-
-        if b == 1 and not vars[a] then
-            return false
-        end
-    end
-
-    return nil
-end
-
-cc.eq = function (a, b, c)
-    a = tonumber(a);
-    b = tonumber(b);
-    c = tonumber(c);
-
-    local s = "=="
-    if (a == 1) then
-        s = "~="
-    end
-
-    if (a ~= nil and b ~= nil and c ~= nil) then
-        return load("return " .. b .. s .. c)()
-    end
-
-    return nil
-end
-
-cc.lt = function (a, b, c)
-    a = tonumber(a);
-    b = tonumber(b);
-    c = tonumber(c);
-
-    local s = ">"
-    if (a == 1) then
-        s = "<"
-    end
-
-    if (a ~= nil and b ~= nil and c ~= nil) then
-        return load("return " .. b .. s .. c)()
-    end
-
-    return nil
-end
-
-cc.le = function (a, b, c)
-    a = tonumber(a);
-    b = tonumber(b);
-    c = tonumber(c);
-
-    local s = ">="
-    if (a == 1) then
-        s = "<="
-    end
-
-    if (a ~= nil and b ~= nil and c ~= nil) then
-        return load("return " .. b .. s .. c)()
-    end
-
-    return nil
-end
-
-
-
-
 local function dumper(func)
     local dump_handle = PARSER_ENV.dump_handle;
     dump_handle:write(".func " .. func.name .. "\n")
@@ -113,6 +39,8 @@ local function dumper(func)
 end
 
 local function deobfuscator(func)
+    local full_stopped = false;
+    local index = 1;
     local vars = {}
     
     --dumper(func)
@@ -127,51 +55,88 @@ local function deobfuscator(func)
         markBase[mark.mark] = mark.pos
     end
 
-    local index = 1;
-    while index <= #lines do
-        local line = lines[index]:strip()
+    local function reverse(endMark)
+        while index <= #lines do
+            if (full_stopped) then break end
+            local save_line = true;
+            local skip = false;
 
-        if (line:startwith("LOADK")) then
-            local v = line:match("LOADK v(%d+)");
-            if (line:match("LOADK v" .. tonumber(v) .. " \"xlet__\"") or line:match("LOADK v" .. tonumber(v) .. " \"__xlet\"")) then
-                vars[tonumber(v)] = "xlet"
-            end
-            vars[tonumber(v)] = 0
-        end
-
-        if (line:startwith("EQ") or line:startwith("LT") or line:startwith("LE")) then
-            local f = string.sub(line, 1, 2):lower();
-            local a, b, c = line:match(".. ([01]*) ([v0987654321]*) ([v0987654321]*)")
+            local line = lines[index]:strip()
+            --print(line)
+            if (endMark ~= nil) then
+                --table.insert(deobf_func.opcodes, lines[index - 1]:strip())
             
+                if (index == markBase[endMark]) then
+                    
+                    index = index - 1
+                    break
+                end
+            end
             
-            if (not cc[f](a, b, c)) then
-                index = index + 1
+            if (line:startwith("LOADK")) then
+                local v = line:match("LOADK v(%d+)");
+                vars[tonumber(v)] = 1;
+            end
+
+
+            if (line:startwith("TEST")) then
+                local v, mode = line:match("TEST v(%d+) (%d+)")
+                v = tonumber(v);
+                mode = tonumber(mode);
+
+                if (vars[v]) then
+                    save_line = false;
+                end
+                if (vars[v] and mode == 0) then
+                    index = index + 1 -- next
+                else
+                    index = index -- first
+                end
+                
+            end
+
+            if (line:startwith("EQ") or line:startwith("LT") or line:startwith("LE")) then
+                index = index + 1;
+                table.insert(deobf_func.opcodes, line)
+                local endMark = lines[index]:strip():match(":(goto_%d+)");
+                
+                save_line = false;
+                table.insert(deobf_func.opcodes, lines[index]:strip())
+                index = index + 1;
+
+                reverse(endMark)
+
+                table.insert(deobf_func.marks, {
+                    pos = #deobf_func.opcodes + 1,
+                    mark = endMark
+                })
+            end
+
+        
+            if (line:startwith("JMP")) then
+                local gotoMark = line:match(":(goto_%d+)")
+                index = markBase[gotoMark]
+                save_line = false;
+                skip = true;
+            end
+            
+            if (save_line) then
+                table.insert(deobf_func.opcodes, line)
+            end
+
+            if (line:startwith("RETURN")) then
+                full_stopped = true;
+                break
+            end
+            
+            ::continue::
+            if (not skip) then
+                index = index + 1;
             end
         end
-
-        if (line:startwith("TEST")) then
-            local v, l = line:match("TEST v(%d+) [01]")
-            if (not cc.test(tonumber(v), tonumber(l), vars)) then
-                index = index + 1
-            end
-        end
-
-    
-        if (line:startwith("JMP")) then
-            local mm = line:match(" :(goto_%d+)")
-            
-            index = markBase[mm] - 1
-        elseif (line:startwith("TEST") or line:startwith("EQ") or line:startwith("LT") or line:startwith("LE")) then
-        else
-            table.insert(deobf_func.opcodes, (line:gsub("%s*;[^\n]*", "")))
-        end
-
-        if (line == "RETURN") then
-            break
-        end
-        --print(line)
-        index = index + 1;
     end
+
+    reverse();
 
     dumper(deobf_func)
 end

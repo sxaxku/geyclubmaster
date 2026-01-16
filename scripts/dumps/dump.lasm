@@ -1,0 +1,476 @@
+.func F0
+	.source "/storage/emulated/0/lua/deobf/Script_enc.lua"
+	.linedefined 1
+	.lastlinedefined 365
+	.numparams 0
+	.is_vararg 0
+	.maxstacksize 58
+
+	.upval u0 ; u1
+
+	LT 0 63 161
+
+	LT 0 63 161
+
+	LT 0 63 161
+
+	JMP :goto_3037  ; +3033 ↓
+
+	:goto_3037
+	LOADK v57 "gg"
+
+	GETTABUP v0 u0 v57
+
+	LOADK v57 "setVisible"
+
+	GETTABLE v0 v0 v57
+
+	LOADBOOL v1 0
+
+	CALL v0..v1
+
+	LOADK v57 "string"
+
+	GETTABUP v0 u0 v57
+
+	LOADK v57 "char"
+
+	GETTABLE v0 v0 v57
+
+	LOADK v57 "xlet__"
+
+	SETTABUP u0 v57 v0
+
+	LOADNIL v0..v1
+
+	NEWTABLE v2 2 0
+
+	NEWTABLE v3 0 0
+
+	NEWTABLE v4 0 0
+
+	SETLIST v2..v4 1
+
+	LOADK v3 2
+
+	LOADK v4 0
+
+	LOADNIL v5..v5
+
+	LOADK v6 1
+
+	GETTABLE v7 v2 1
+
+	LOADK v57 "_G"
+
+	GETTABUP v8 u0 v57
+
+	LOADK v57 "xlet__"
+
+	GETTABUP v9 u0 v57
+
+	LOADK v10 116
+
+	LOADK v11 111
+
+	LOADK v12 110
+
+	LOADK v13 117
+
+	LOADK v14 109
+
+	LOADK v15 98
+
+	LOADK v16 101
+
+	LOADK v17 114
+
+	CALL v9..v17 v9..v9
+
+	GETTABLE v8 v8 v9
+
+	LOADK v57 "xlet__"
+
+	GETTABUP v9 u0 v57
+
+	MOVE v10 v6
+
+	CALL v9..v10 SET_TOP
+
+	CALL v8 v8..v8
+
+	TEST v8 1
+
+	SETTABLE v7 v6 v8
+
+	ADD v6 v6 1
+
+	LT 0 255 v6
+
+	JMP :goto_1060  ; +16 ↓
+
+	LOADK v57 "_G"
+
+	GETTABUP v7 u0 v57
+
+	LOADK v57 "xlet__"
+
+	GETTABUP v8 u0 v57
+
+	LOADK v9 100
+
+	LOADK v10 101
+
+	LOADK v11 98
+
+	LOADK v12 117
+
+	LOADK v13 103
+
+	CALL v8..v13 v8..v8
+
+	GETTABLE v7 v7 v8
+
+	LOADK v57 "xlet__"
+
+	GETTABUP v8 u0 v57
+
+	LOADK v9 103
+
+	LOADK v10 101
+
+	LOADK v11 116
+
+	LOADK v12 108
+
+	LOADK v13 111
+
+	LOADK v14 99
+
+	LOADK v15 97
+
+	LOADK v16 108
+
+	CALL v8..v16 v8..v8
+
+	GETTABLE v7 v7 v8
+
+	LOADK v8 2
+
+	LOADK v9 4
+
+	CALL v7..v9 v7..v7
+
+	EQ 0 v7 nil
+
+	JMP :goto_920  ; -2070 ↑
+
+	LOADK v57 "xlet__"
+
+	GETTABUP v7 u0 v57
+
+	LOADK v8 104
+
+	LOADK v9 116
+
+	LOADK v10 116
+
+	LOADK v11 112
+
+	LOADK v12 58
+
+	LOADK v13 47
+
+	LOADK v14 47
+
+	LOADK v15 103
+
+	LOADK v16 97
+
+	LOADK v17 109
+
+	LOADK v18 101
+
+	LOADK v19 103
+
+	LOADK v20 117
+
+	LOADK v21 97
+
+	LOADK v22 114
+
+	LOADK v23 100
+
+	LOADK v24 105
+
+	LOADK v25 97
+
+	LOADK v26 110
+
+	LOADK v27 46
+
+	LOADK v28 110
+
+	LOADK v29 101
+
+	LOADK v30 116
+
+	CALL v7..v30 v7..v7
+
+	LOADK v57 "_G"
+
+	GETTABUP v8 u0 v57
+
+	LOADK v57 "xlet__"
+
+	GETTABUP v9 u0 v57
+
+	LOADK v10 103
+
+	LOADK v11 103
+
+	CALL v9..v11 v9..v9
+
+	GETTABLE v8 v8 v9
+
+	LOADK v57 "xlet__"
+
+	GETTABUP v9 u0 v57
+
+	LOADK v10 97
+
+	LOADK v11 108
+
+	LOADK v12 101
+
+	LOADK v13 114
+
+	LOADK v14 116
+
+	CALL v9..v14 v9..v9
+
+	GETTABLE v8 v8 v9
+
+	LOADK v57 "xlet__"
+
+	GETTABUP v9 u0 v57
+
+	LOADK v10 80
+
+	LOADK v11 108
+
+	LOADK v12 101
+
+	LOADK v13 97
+
+	LOADK v14 115
+
+	LOADK v15 101
+
+	LOADK v16 44
+
+	LOADK v17 32
+
+	LOADK v18 117
+
+	LOADK v19 112
+
+	LOADK v20 100
+
+	LOADK v21 97
+
+	LOADK v22 116
+
+	LOADK v23 101
+
+	LOADK v24 32
+
+	LOADK v25 121
+
+	LOADK v26 111
+
+	LOADK v27 117
+
+	LOADK v28 114
+
+	LOADK v29 32
+
+	LOADK v30 71
+
+	LOADK v31 71
+
+	LOADK v32 32
+
+	LOADK v33 118
+
+	LOADK v34 101
+
+	LOADK v35 114
+
+	LOADK v36 115
+
+	LOADK v37 105
+
+	LOADK v38 111
+
+	LOADK v39 110
+
+	LOADK v40 32
+
+	LOADK v41 102
+
+	LOADK v42 105
+
+	LOADK v43 114
+
+	LOADK v44 115
+
+	LOADK v45 116
+
+	LOADK v46 32
+
+	LOADK v47 226
+
+	LOADK v48 157
+
+	LOADK v49 151
+
+	LOADK v50 10
+
+	LOADK v51 10
+
+	LOADK v52 240
+
+	LOADK v53 159
+
+	LOADK v54 148
+
+	LOADK v55 151
+
+	LOADK v56 32
+
+	CALL v9..v56 v9..v9
+
+	MOVE v10 v7
+
+	LOADK v57 "xlet__"
+
+	GETTABUP v11 u0 v57
+
+	CALL v11..v11 v11..v11
+
+	CONCAT v9 v9..v11
+
+	LOADK v57 "xlet__"
+
+	GETTABUP v10 u0 v57
+
+	LOADK v11 67
+
+	LOADK v12 111
+
+	LOADK v13 112
+
+	LOADK v14 121
+
+	LOADK v15 32
+
+	LOADK v16 76
+
+	LOADK v17 105
+
+	LOADK v18 110
+
+	LOADK v19 107
+
+	CALL v10..v19 SET_TOP
+
+	CALL v8 v8..v8
+
+	EQ 0 v8 1
+
+	JMP :goto_1781  ; -1164 ↑
+
+	LOADK v57 "_G"
+
+	GETTABUP v8 u0 v57
+
+	LOADK v57 "xlet__"
+
+	GETTABUP v9 u0 v57
+
+	LOADK v10 103
+
+	LOADK v11 103
+
+	CALL v9..v11 v9..v9
+
+	GETTABLE v8 v8 v9
+
+	LOADK v57 "xlet__"
+
+	GETTABUP v9 u0 v57
+
+	LOADK v10 99
+
+	LOADK v11 111
+
+	LOADK v12 112
+
+	LOADK v13 121
+
+	LOADK v14 84
+
+	LOADK v15 101
+
+	LOADK v16 120
+
+	LOADK v17 116
+
+	CALL v9..v17 v9..v9
+
+	GETTABLE v8 v8 v9
+
+	MOVE v9 v7
+
+	LOADBOOL v10 0
+
+	CALL v8..v10
+
+	LOADK v57 "_G"
+
+	GETTABUP v8 u0 v57
+
+	LOADK v57 "xlet__"
+
+	GETTABUP v9 u0 v57
+
+	LOADK v10 111
+
+	LOADK v11 115
+
+	CALL v9..v11 v9..v9
+
+	GETTABLE v8 v8 v9
+
+	LOADK v57 "xlet__"
+
+	GETTABUP v9 u0 v57
+
+	LOADK v10 101
+
+	LOADK v11 120
+
+	LOADK v12 105
+
+	LOADK v13 116
+
+	CALL v9..v13 v9..v9
+
+	GETTABLE v8 v8 v9
+
+	CALL v8..v8
+
+	RETURN
+
+.end F0

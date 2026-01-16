@@ -1,44 +1,8 @@
-local function dumper(func)
-    local dump_handle = PARSER_ENV.dump_handle;
-    dump_handle:write(".func " .. func.name .. "\n")
 
-    dump_handle:write("\t.source \"" .. func.headers.source .. "\"\n")
-    dump_handle:write("\t.linedefined " .. func.headers.linedefined .. "\n")
-    dump_handle:write("\t.lastlinedefined " .. func.headers.lastlinedefined .. "\n")
-    dump_handle:write("\t.numparams " .. func.headers.numparams .. "\n")
-    dump_handle:write("\t.is_vararg " .. func.headers.is_vararg .. "\n")
-    dump_handle:write("\t.maxstacksize " .. func.headers.maxstacksize .. "\n\n")
-
-    for index, upval in ipairs(func.upvals) do
-         dump_handle:write("\t.upval " .. upval .. " ; u" .. index .. "\n\n")
-    end
-
-    local marksByPos = {}
-
-    for _, mark in ipairs(func.marks) do
-        local pos = mark.pos
-        if not marksByPos[pos] then
-            marksByPos[pos] = {}
-        end
-        table.insert(marksByPos[pos], mark.mark)
-    end
-
-    for index, opcode in ipairs(func.opcodes) do
-        local marks = marksByPos[index]
-        if marks then
-            for _, mark in ipairs(marks) do
-                dump_handle:write("\t:" .. mark .. "\n")
-            end
-        end
-
-        dump_handle:write("\t" .. opcode .. "\n\n")
-    end
-
-
-    dump_handle:write(".end " .. func.name .. "\n")
-end
 
 local function deobfuscator(func)
+    local logger = PARSER_ENV.logger;
+    logger("Preparing for deobfuscation")
     local full_stopped = false;
     local index = 1;
     local vars = {}
@@ -75,27 +39,47 @@ local function deobfuscator(func)
             
             if (line:startwith("LOADK")) then
                 local v = line:match("LOADK v(%d+)");
-                vars[tonumber(v)] = 1;
+                --if (line:match("LOADK v" .. v .. " \"xlet__\"") or line:match("LOADK v" .. v .. " \"__xlet\"") or line:match("LOADK v" .. v .. " \"error\"")) then
+                    vars[tonumber(v)] = 1;
+                --end
             end
 
 
-            if (line:startwith("TEST")) then
+            if (line:startwith("TEST") and (not line:startwith("TESTSET"))) then
                 local v, mode = line:match("TEST v(%d+) (%d+)")
                 v = tonumber(v);
                 mode = tonumber(mode);
 
-                if (vars[v]) then
+                if (vars[v] == nil) then
+                    logger("TEST Detected")
+                    index = index + 1;
+                    table.insert(deobf_func.opcodes, line)
+                    local endMark = lines[index]:strip():match(":(goto_%d+)");
+                    
                     save_line = false;
-                end
-                if (vars[v] and mode == 0) then
-                    index = index + 1 -- next
+                    table.insert(deobf_func.opcodes, lines[index]:strip())
+                    index = index + 1;
+
+                    reverse(endMark)
+
+                    table.insert(deobf_func.marks, {
+                        pos = #deobf_func.opcodes + 1,
+                        mark = endMark
+                    })
                 else
-                    index = index -- first
+                    if (vars[v]) then
+                        save_line = false;
+                    end
+                    if (vars[v] and mode == 0) then
+                        index = index + 1 -- next
+                    else
+                        index = index -- first
+                    end
                 end
-                
             end
 
-            if (line:startwith("EQ") or line:startwith("LT") or line:startwith("LE")) then
+            if (line:startwith("EQ") or line:startwith("LT") or (line:startwith("LE") and line:sub(1,3) ~= "LEN")) then
+                logger(line:sub(1, 2) .. " Detected")
                 index = index + 1;
                 table.insert(deobf_func.opcodes, line)
                 local endMark = lines[index]:strip():match(":(goto_%d+)");
@@ -118,6 +102,9 @@ local function deobfuscator(func)
                 index = markBase[gotoMark]
                 save_line = false;
                 skip = true;
+                if (PARSER_ENV.logging_jumps) then  
+                    logger("Jump to " .. gotoMark)
+                end
             end
             
             if (save_line) then
@@ -138,7 +125,7 @@ local function deobfuscator(func)
 
     reverse();
 
-    dumper(deobf_func)
+    return deobf_func;
 end
 
 return deobfuscator;

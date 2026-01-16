@@ -17,5 +17,3 @@ function table.copy(orig, seen)
     end
     return copy
 end
-
-return table;

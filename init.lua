@@ -43,12 +43,13 @@ local function init()
     
 
     local f = io.open(PARSER_ENV.lasm_path, "r");
-    string = require("tools/strings")
-    table = require("tools/tables")
+    require("tools/strings")
+    require("tools/tables")
 
     local lines = {};
     local funcparser = require("parser/func_parser");
     local deobfuscator = require("reverse/func_deobfuscator");
+    local dumper = require("dumper/dumper");
 
     if not f then
         print(tostring(f))
@@ -68,7 +69,22 @@ local function init()
     local parsed_lasm = funcparser(lines, 0);
     parsed_lasm.name = "main"
 
-    deobfuscator(parsed_lasm.funcs[1])
+    -- local function fullDeobf(func)
+    --     local deobfed = deobfuscator(func)
+    --     for index, f in pairs(func.funcs) do
+    --         -- print(f, 1)
+    --         -- print(f.name, 2)
+    --         deobfed[index] = fullDeobf(f);
+    --     end
+
+    --     return deobfed;
+    -- end
+
+    -- local deobfuscated_lasm = fullDeobf(parsed_lasm)
+
+    -- dumper(deobfuscated_lasm)
+    
+    dumper(deobfuscator(parsed_lasm.funcs[1].funcs[2]))
     --print(parsed_lasm.funcs[1].funcs[4].funcs[11].name)
 
     PARSER_ENV.log_handle:close()

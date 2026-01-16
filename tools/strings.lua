@@ -1,10 +1,10 @@
 function string.startwith(str, s) 
-    local size = string.len(s);
-    return str:sub(1, size) == s
+    return #s > 0 and str:sub(1, #s) == s
 end
 
 function string.strip(s)
-  return ((s:gsub("^%s+", "")):gsub("%s+$", ""))
+    if type(s) ~= "string" then
+        error("string.strip() called on non-string: " .. type(s), 2)
+    end
+    return (s:gsub("^%s+", ""):gsub("%s+$", ""))
 end
-
-return string;

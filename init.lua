@@ -84,7 +84,7 @@ local function init()
 
     -- dumper(deobfuscated_lasm)
     
-    dumper(deobfuscator(parsed_lasm.funcs[1].funcs[2]))
+    dumper(deobfuscator(parsed_lasm.funcs[1].funcs[4]))
     --print(parsed_lasm.funcs[1].funcs[4].funcs[11].name)
 
     PARSER_ENV.log_handle:close()

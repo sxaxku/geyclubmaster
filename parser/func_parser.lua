@@ -60,7 +60,7 @@ local function parse_func(lines, t)
             table.insert(func.upvals, line:match("%.upval ([uv]%d+) "))
         end
 
-        if line:sub(1, 1):match("[A-Z]") then
+        if line:sub(1, 1):match("%w") then
             opcodeIndex = opcodeIndex + 1
             table.insert(func.opcodes, line)
         end

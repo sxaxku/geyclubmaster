@@ -11,6 +11,10 @@
 
 LOADNIL v0..v5
 
+
+JMP :gg3
+
+:gg3
 JMP :gg1
 
 :gg2

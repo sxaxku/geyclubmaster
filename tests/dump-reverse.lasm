@@ -1,326 +1,62 @@
-.func F4
-	.source "=?"
-	.linedefined 201
-	.lastlinedefined 249
+.func main
+	.source "/storage/emulated/0/lua/deobf/Script_enc.lua"
+	.linedefined 250
+	.lastlinedefined 261
 	.numparams 0
 	.is_vararg 1
-	.maxstacksize 21
+	.maxstacksize 12
 
 	.upval u0 nil ; u0
 
-	LT 0 91 239
+	NEWTABLE v0 0 0
 
-	LT 0 91 239
+	VARARG v1
 
-	LT 0 91 239
+	SETLIST v0 1
 
-	JMP :goto_819  ; +815 ↓
+	LOADK v1 0
 
-	:goto_819
-	VARARG v0..v1
+	LOADK v11 "ipairs"
 
-	LOADK v20 "__xlet"
-
-	SETTABUP u0 v20 v0
-
-	LOADK v20 "print"
-
-	GETTABUP v0 u0 v20
-
-	LOADK v20 "__xlet"
-
-	GETTABUP v1 u0 v20
-
-	LOADK v2 "\x1D5MX\x81\x96\xA0hW\x98\x98\xC9\x91\xF8\xFB(.XR\x88\x8E\xB8\xB98\x01\xCE00`b\x90\x93\x10n\x8F\xAAp\x95\xAD\xC5"
-
-	LOADK v3 24
-
-	CALL v1..v3 SET_TOP
-
-	CALL v0
-
-	LOADK v0 1
-
-	LOADK v1 5
-
-	LOADK v2 1
+	GETTABUP v2 u0 v11
 
 	MOVE v3 v0
 
-	MOVE v4 v1
-
-	MOVE v5 v2
-
-	FORPREP v3 :goto_248  ; -504 ↑
-
-	LOADK v20 "print"
-
-	GETTABUP v7 u0 v20
-
-	LOADK v20 "__xlet"
-
-	GETTABUP v8 u0 v20
-
-	LOADK v9 "cP"
-
-	LOADK v10 25
-
-	CALL v8..v10 v8..v8
-
-	MOVE v9 v6
-
-	CONCAT v8 v8..v9
-
-	LOADK v20 "__xlet"
-
-	GETTABUP v9 u0 v20
-
-	LOADK v10 "e["
-
-	LOADK v11 26
-
-	CALL v9..v11 v9..v9
-
-	MOVE v10 v0
-
-	CONCAT v9 v9..v10
-
-	LOADK v20 "__xlet"
-
-	GETTABUP v10 u0 v20
-
-	LOADK v11 "pf"
-
-	LOADK v12 27
-
-	CALL v10..v12 v10..v10
-
-	MOVE v11 v1
-
-	CONCAT v10 v10..v11
-
-	LOADK v20 "__xlet"
-
-	GETTABUP v11 u0 v20
-
-	LOADK v12 "{q"
-
-	LOADK v13 28
-
-	CALL v11..v13 v11..v11
-
-	MOVE v12 v2
-
-	CONCAT v11 v11..v12
-
-	CALL v7..v11
-
-	FORLOOP v3 :goto_752  ; +251 ↓
-
-	LOADK v20 "print"
-
-	GETTABUP v3 u0 v20
-
-	LOADK v20 "__xlet"
-
-	GETTABUP v4 u0 v20
-
-	LOADK v5 ",l\x89\xA6\xB6\xE5\xFE\r\xDA\xCD\x14\x19NU\x88\x90\x12u\x9B\xBB\x86T'\x8D\x8F\xC8\x94\x01\x03;?\xC52@e\x8B\xA9s\x9D\xBA\xD7"
-
-	LOADK v6 29
-
-	CALL v4..v6 SET_TOP
-
-	CALL v3
-
-	NEWTABLE v3 0 3
-
-	LOADK v20 "__xlet"
-
-	GETTABUP v4 u0 v20
-
-	LOADK v5 "\xA8\xBA\xD8"
-
-	LOADK v6 31
-
-	CALL v4..v6 v4..v4
-
-	LOADK v20 "apple"
-
-	SETTABLE v3 v20 v4
-
-	LOADK v20 "__xlet"
-
-	GETTABUP v4 u0 v20
-
-	LOADK v5 "\xB9\xC5\xEC\f/W"
-
-	LOADK v6 32
-
-	CALL v4..v6 v4..v4
-
-	LOADK v20 "banana"
-
-	SETTABLE v3 v20 v4
-
-	LOADK v20 "__xlet"
-
-	GETTABUP v4 u0 v20
-
-	LOADK v5 "\xB8\xE0\xF9\x0F3a0\x9A\xC0\xD7\xF9-"
-
-	LOADK v6 33
-
-	CALL v4..v6 v4..v4
-
-	SETTABLE v3 1 v4
-
-	LOADK v20 "pairs"
-
-	GETTABUP v4 u0 v20
-
-	MOVE v5 v3
-
-	CALL v4..v5 v4..v6
+	CALL v2..v3 v2..v4
 
 	JMP :end_cycle_body_1
 
 	:start_cycle_body_1
-	LOADK v20 "print"
+	LOADK v11 "type"
 
-	GETTABUP v9 u0 v20
+	GETTABUP v7 u0 v11
 
-	LOADK v20 "__xlet"
+	MOVE v8 v6
 
-	GETTABUP v10 u0 v20
+	CALL v7..v8 v7..v7
 
-	LOADK v11 "\x9F\xDB\x11\xF4"
+	LOADK v11 "__xlet"
 
-	LOADK v12 34
+	:goto_91
+	GETTABUP v8 u0 v11
 
-	CALL v10..v12 v10..v10
+	LOADK v9 "\xAE\xD5\xED\x02%R"
 
-	MOVE v11 v7
+	LOADK v10 32
 
-	LOADK v20 "__xlet"
+	CALL v8..v10 v8..v8
 
-	GETTABUP v12 u0 v20
-
-	LOADK v13 "\xB4\xE2\x10<OG"
-
-	LOADK v14 35
-
-	CALL v12..v14 v12..v12
-
-	MOVE v13 v8
-
-	LOADK v20 "__xlet"
-
-	GETTABUP v14 u0 v20
-
-	LOADK v15 "\xBC\xED\x12@]V"
-
-	LOADK v16 36
-
-	CALL v14..v16 v14..v14
-
-	MOVE v15 v3
-
-	CALL v9..v15
-
-	TFORCALL v4..v8
+	TFORCALL v2..v6
 
 	:end_cycle_body_1
-	TFORLOOP v6 :start_cycle_body_1  ; -472 ↑
+	TFORLOOP v4 :start_cycle_body_1  ; +25 ↓
 
-	LOADK v20 "print"
+	RETURN v1..v1
 
-	GETTABUP v4 u0 v20
+	EQ 0 v7 v8
 
-	LOADK v20 "__xlet"
+	JMP :goto_17  ; -71 ↑
 
-	GETTABUP v5 u0 v20
+	ADD v1 v1 v6
 
-	LOADK v6 "|\xC4\xE9\x0E&^~\x95je\xB4\xC1\xFE\rHX\xE2M{\xA3vL'\x95\x9F\xE0\xB4)3s\x7F\r\x80\x9C\xD4\xF5\xC6\xF3\xC0\xC5\n\x1CTY\x9E\xAE\xE8\xFB2:\xCCAW\x84\xB2\xD8\xB3\xCF\x01&K"
-
-	LOADK v7 37
-
-	CALL v5..v7 SET_TOP
-
-	CALL v4
-
-	LOADNIL v4..v4
-
-	LOADK v20 "next"
-
-	GETTABUP v5 u0 v20
-
-	MOVE v6 v3
-
-	MOVE v7 v4
-
-	JMP :end_cycle_body_2
-
-	:start_cycle_body_2
-	LOADK v20 "print"
-
-	GETTABUP v10 u0 v20
-
-	LOADK v20 "__xlet"
-
-	GETTABUP v11 u0 v20
-
-	LOADK v12 "\xD1\x12M5"
-
-	LOADK v13 39
-
-	CALL v11..v13 v11..v11
-
-	MOVE v12 v8
-
-	LOADK v20 "__xlet"
-
-	GETTABUP v13 u0 v20
-
-	LOADK v14 "\xE6\x19L}\x95\x92"
-
-	LOADK v15 40
-
-	CALL v13..v15 v13..v13
-
-	MOVE v14 v9
-
-	LOADK v20 "__xlet"
-
-	GETTABUP v15 u0 v20
-
-	LOADK v16 "\xEE$N\x81\xA3\xA1"
-
-	LOADK v17 41
-
-	CALL v15..v17 v15..v15
-
-	MOVE v16 v3
-
-	LOADK v20 "__xlet"
-
-	GETTABUP v17 u0 v20
-
-	LOADK v18 "\xF7BY\x94\xC0\xB0"
-
-	LOADK v19 42
-
-	CALL v17..v19 v17..v17
-
-	MOVE v18 v4
-
-	CALL v10..v18
-
-	TFORCALL v5..v9
-
-	:end_cycle_body_2
-	TFORLOOP v7 :start_cycle_body_2  ; -781 ↑
-
-	RETURN
-
-.end F4
+.end main

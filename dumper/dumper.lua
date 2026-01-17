@@ -14,13 +14,18 @@ local function dumper(func)
     end
 
     local marksByPos = {}
+    local writedMarks = {}
 
     for _, mark in ipairs(func.marks) do
-        local pos = mark.pos
-        if not marksByPos[pos] then
-            marksByPos[pos] = {}
+        if (not writedMarks[mark.mark] and mark.mark ~= nil) then
+            local pos = mark.pos
+            if not marksByPos[pos] then
+                marksByPos[pos] = {}
+            end
+            --rint(mark.mark, mark.pos)
+            writedMarks[mark.mark] = true
+            table.insert(marksByPos[pos], mark.mark)
         end
-        table.insert(marksByPos[pos], mark.mark)
     end
 
     for index, opcode in ipairs(func.opcodes) do

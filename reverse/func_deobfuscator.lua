@@ -1,4 +1,4 @@
-
+local checks = 0;
 
 local function deobfuscator(func)
     local types = {
@@ -90,6 +90,15 @@ local function deobfuscator(func)
 
             local line = lines[index]:strip()
             local mark = markBase[index];
+
+            if (mark ~= nil) then
+                if (usableMarks[mark]) then
+                    table.insert(deobf_func.marks, {
+                        pos = #deobf_func.opcodes + 1,
+                        mark = mark
+                    })
+                end
+            end
             
             local opcode = line:match("%w+") or "none"
 
@@ -126,6 +135,8 @@ local function deobfuscator(func)
 
                     reverse(endMark)
 
+                    --print(endMark == nil)
+
                     table.insert(deobf_func.marks, {
                         pos = #deobf_func.opcodes + 1,
                         mark = endMark
@@ -143,16 +154,19 @@ local function deobfuscator(func)
             end
 
             if (isOtherCondition(opcode)) then -- EQ LT LE
+                print(checks)
+                checks = checks + 1
                 logger(line:sub(1, 2) .. " Detected")
                 index = index + 1;
                 table.insert(deobf_func.opcodes, line)
-                local endMark = lines[index]:strip():match(":(goto_%d+)");
+                local endMarkx = lines[index]:strip():match(":(goto_%d+)");
                 
                 save_line = false;
                 table.insert(deobf_func.opcodes, lines[index]:strip())
                 index = index + 1;
 
-                reverse(endMark)
+
+                reverse(endMarkx)
 
                 table.insert(deobf_func.marks, {
                     pos = #deobf_func.opcodes + 1,
@@ -174,11 +188,14 @@ local function deobfuscator(func)
 
             if (isCycle(opcode)) then -- FORLOOP FORPREP
                 local markTo = line:match(":(goto_%d+)");
-                table.insert(usableMarks, markTo)
+                usableMarks[markTo] = markTo;
             elseif (istforCycle(opcode)) then -- TFORLOOP
+                print(checks)
+                checks = checks + 1;
                 local startMark = line:match(":(goto_%d+)");
 
                 tforcycle[#tforcycle].start_body_mark = startMark
+                local x = nil
             end
 
             if (line:startwith("TFORCALL")) then
@@ -192,7 +209,7 @@ local function deobfuscator(func)
                         opcode_index = #deobf_func.opcodes + 1
                     })
                 end
-            
+            local x = nil
             end
             
         
@@ -214,6 +231,7 @@ local function deobfuscator(func)
                 index = index + 1;
             end
         end
+        local x = nil
     end
 
     reverse();

@@ -1,0 +1,55 @@
+NEWTABLE v0 0 0
+
+VARARG v1
+
+SETLIST v0 1
+
+LOADK v1 0
+
+LOADK v11 "ipairs"
+
+GETTABUP v2 u0 v11
+
+MOVE v3 v0
+
+CALL v2..v3 v2..v4
+
+JMP :goto_17
+
+:goto_67
+LOADK v11 "type"
+
+GETTABUP v7 u0 v11
+
+MOVE v8 v6
+
+CALL v7..v8 v7..v7
+
+LOADK v11 "__xlet"
+
+GETTABUP v8 u0 v11
+
+LOADK v9 "\xAE\xD5\xED\x02%R"
+
+LOADK v10 32
+
+CALL v8..v10 v8..v8
+
+EQ 0 v7 v8
+
+JMP :goto_17  ; -71 ↑
+
+ADD v1 v1 v6
+
+:goto_17
+TFORCALL v2..v6
+
+TFORLOOP v4 :goto_67  ; +25 ↓  
+; .end local v2 "(for generator)"
+; .end local v3 "(for state)"
+; .end local v4 "(for control)"
+; .end local v5 "(for key)"
+
+RETURN v1..v1
+
+RETURN

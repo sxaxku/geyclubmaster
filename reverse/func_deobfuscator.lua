@@ -154,8 +154,7 @@ local function deobfuscator(func)
             end
 
             if (isOtherCondition(opcode)) then -- EQ LT LE
-                print(checks)
-                checks = checks + 1
+                --print(checks)
                 logger(line:sub(1, 2) .. " Detected")
                 index = index + 1;
                 table.insert(deobf_func.opcodes, line)
@@ -190,7 +189,7 @@ local function deobfuscator(func)
                 local markTo = line:match(":(goto_%d+)");
                 usableMarks[markTo] = markTo;
             elseif (istforCycle(opcode)) then -- TFORLOOP
-                print(checks)
+                --print(checks)
                 checks = checks + 1;
                 local startMark = line:match(":(goto_%d+)");
 
